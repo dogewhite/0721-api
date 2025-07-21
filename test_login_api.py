@@ -8,7 +8,7 @@ import json
 
 def test_login_api():
     """测试登录API"""
-    url = "http://localhost:8000/api/login"
+    url = "https://api.zxyang.xin/api/login"
     
     # 测试数据
     data = {

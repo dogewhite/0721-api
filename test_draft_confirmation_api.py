@@ -10,7 +10,7 @@ from datetime import datetime
 def test_draft_confirmation_api():
     """测试草稿确认API"""
     
-    base_url = "http://localhost:8000"
+    base_url = "https://api.zxyang.xin"
     
     print("=== 测试草稿确认API ===")
     print(f"测试时间: {datetime.now()}")

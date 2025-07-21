@@ -14,3 +14,5 @@ click
 python-jose
 passlib[bcrypt]
 redis==5.0.1
+# Vercel部署所需
+python-dotenv==1.0.0

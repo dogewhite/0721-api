@@ -8,7 +8,7 @@ import json
 from datetime import datetime
 
 # Redis配置
-REDIS_HOST = "localhost"
+REDIS_HOST = "localhost"  # 测试环境使用localhost
 REDIS_PORT = 6379
 REDIS_DB = 0
 REDIS_QUEUE = "trigger_queue"

@@ -19,6 +19,7 @@ local_ip = socket.gethostbyname(hostname)
 
 print("🚀 启动智能JD分析API服务器...")
 print(f"📊 本地访问: http://localhost:8000")
+print(f"📊 生产环境: https://api.zxyang.xin")
 print(f"📊 局域网访问: http://{local_ip}:8000")
 print("📚 API文档: http:///docs")
 print("🔧 配置信息:")

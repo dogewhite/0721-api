@@ -1,0 +1,25 @@
+# 数据库配置
+DB_HOST=your-database-host
+DB_PORT=5432
+DB_USER=your-database-user
+DB_PASSWORD=your-database-password
+DB_NAME=your-database-name
+
+# OSS配置
+OSS_ENDPOINT=your-oss-endpoint
+OSS_ACCESS_KEY_ID=your-oss-access-key-id
+OSS_ACCESS_KEY_SECRET=your-oss-access-key-secret
+OSS_BUCKET=your-oss-bucket-name
+
+# API密钥
+DEEPSEEK_API_KEY=your-deepseek-api-key
+KIMI_API_KEY=your-kimi-api-key
+
+# JWT配置
+JWT_SECRET_KEY=your-jwt-secret-key
+
+# Redis配置（如果需要）
+REDIS_HOST=your-redis-host
+REDIS_PORT=6379
+REDIS_DB=0
+REDIS_URL=your-redis-url 

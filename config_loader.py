@@ -10,6 +10,10 @@ class ConfigLoader:
         self.config = {}
         self.load_config()
         
+    def get_env_or_config(self, key: str, default: str = "") -> str:
+        """优先从环境变量获取配置，如果没有则从配置文件获取"""
+        return os.environ.get(key, self.config.get(key, default))
+        
     def load_config(self):
         """读取配置文件"""
         try:
@@ -53,12 +57,11 @@ class ConfigLoader:
     
     def get_deepseek_api_key(self) -> str:
         """获取DeepSeek API密钥"""
-        # 这里添加DeepSeek API密钥，用户需要替换为实际的API密钥
-        return "sk-a0e0517e24b648ad8456b81906f1fd9d"  # 请替换为实际的DeepSeek API密钥
+        return self.get_env_or_config("DEEPSEEK_API_KEY", "sk-a0e0517e24b648ad8456b81906f1fd9d")
     
     def get_kimi_api_key(self) -> str:
         """获取Kimi API密钥"""
-        return self.config.get('kimi_api_key', '')
+        return self.get_env_or_config('KIMI_API_KEY', '')
     
     def get_database_url(self):
         """获取数据库连接URL（兼容旧代码）"""
@@ -67,16 +70,16 @@ class ConfigLoader:
     def get_oss_config_dict(self):
         """获取OSS配置字典"""
         return {
-            'endpoint': self.config.get('OSS_ENDPOINT', ''),
-            'access_key_id': self.config.get('OSS_ACCESS_KEY_ID', ''),
-            'access_key_secret': self.config.get('OSS_ACCESS_KEY_SECRET', ''),
-            'bucket': self.config.get('OSS_BUCKET', ''),
-            'bucket_name': self.config.get('OSS_BUCKET_NAME', self.config.get('OSS_BUCKET', ''))
+            'endpoint': self.get_env_or_config('OSS_ENDPOINT', ''),
+            'access_key_id': self.get_env_or_config('OSS_ACCESS_KEY_ID', ''),
+            'access_key_secret': self.get_env_or_config('OSS_ACCESS_KEY_SECRET', ''),
+            'bucket': self.get_env_or_config('OSS_BUCKET', ''),
+            'bucket_name': self.get_env_or_config('OSS_BUCKET_NAME', self.get_env_or_config('OSS_BUCKET', ''))
         }
 
     def get_db_url(self):
         """获取数据库URL"""
-        return f"postgresql://{self.config.get('DB_USER')}:{self.config.get('DB_PASSWORD')}@{self.config.get('DB_HOST')}:{self.config.get('DB_PORT')}/{self.config.get('DB_NAME')}"
+        return f"postgresql://{self.get_env_or_config('DB_USER')}:{self.get_env_or_config('DB_PASSWORD')}@{self.get_env_or_config('DB_HOST')}:{self.get_env_or_config('DB_PORT')}/{self.get_env_or_config('DB_NAME')}"
 
     def get_talentdb_url(self):
         """获取人才库数据库URL，兼容draft_models等调用"""

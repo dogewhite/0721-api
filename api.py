@@ -59,6 +59,15 @@ kimi_client = KimiClient()
 # 创建FastAPI应用
 app = FastAPI(title="智能JD分析API", version="1.0.0")
 
+# 添加CORS中间件，允许前端访问
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 在生产环境中应该设置具体的域名
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # JWT配置
 SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "your_secret_key")
 ALGORITHM = "HS256"
@@ -3204,9 +3213,9 @@ def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depend
 import redis
 
 # Redis配置（可根据实际情况修改）
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_DB = 0
+REDIS_HOST = os.environ.get('REDIS_HOST', 'localhost')
+REDIS_PORT = int(os.environ.get('REDIS_PORT', 6379))
+REDIS_DB = int(os.environ.get('REDIS_DB', 0))
 REDIS_QUEUE = 'trigger_queue'
 
 redis_client = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB, decode_responses=True)
