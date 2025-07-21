@@ -1,0 +1,4 @@
+# KIMI API Key 配置文件
+# 请将你的KIMI API Key粘贴在下方，无需加引号
+# 例如：
+sk-VRFpqiN0AC6eFXZ79MbBuRZMTY2GLkPeOPdGjJt2BsHGLJys
